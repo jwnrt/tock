@@ -23,7 +23,7 @@ capsules-aes-gcm = { path = "../../../capsules/aes_gcm" }
 
 
 [features]
-default = ["fpga_cw310"]
+default = ["fpga_cw310", "vfe"]
 
 # OpenTitan SoC design can be synthesized or compiled for different targets. A
 # target can be a specific FPGA board, an ASIC technology, or a simulation tool.
@@ -42,3 +42,6 @@ sim_verilator = []
 # This is used to indicate that we should include tests that only pass on
 # hardware.
 hardware_tests = []
+
+# Whether to enable the unstable virtual-function-elimination feature.
+vfe = []

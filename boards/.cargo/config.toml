@@ -43,6 +43,23 @@ rustflags = [
     "-C", "target-feature=+relax",
 ]
 
+# virtual-function-elimination reduces the size of binaries, but is still
+# experimental and has some possible miscompilation issues. This is only enabled
+# for some boards by default, but is exposed via the `vfe` Cargo feature.
+#
+# For details on virtual-function-elimination see:
+# https://github.com/rust-lang/rust/pull/96285.
+# See https://github.com/rust-lang/rust/issues/68262 for general tracking
+[target.'cfg(feature = "vfe")']
+rustflags = [
+    "-Zvirtual-function-elimination",
+    "-Clto",
+    "-Cembed-bitcode=true",
+]
+
+[profile.dev]
+lto = true
+
 # Required to prevent `compiler_builtins` unwinding.
 [profile.dev.package.compiler_builtins]
 overflow-checks = false
