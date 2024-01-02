@@ -4,6 +4,9 @@
 
 [unstable]
 build-std = ["core", "compiler_builtins"]
+# Build test crates with the `panic = "abort"` strategy. Tests use `unwind` by
+# default which causes incompatability with the `core` built via `build-std`.
+panic-abort-tests = true
 
 # `.cfg(all(()))` is needed here to ensure this table is merged with other
 # `[target.*]` tables below rather than being overridden by them.
